@@ -15,13 +15,13 @@ public class Main {
 
         int[] array = hacerArray();
         Long tiempoQuicksort = ejecutarQuicksort(array);
-        Long tiempoBurnuja = ejecutarBurbuja(array);
+        Long tiempoBurbuja = ejecutarBurbuja(array);
 
         int[][] matrizA = hacerMatriz();
         int[][] matrizB = hacerMatriz();
         Long tiempoMultiplicacionDeMatrices = ejecutarMultiplicacionDeMatrices(matrizA, matrizB);
 
-        hallarMasOptimo(tiempoQuicksort, tiempoBurnuja, tiempoMultiplicacionDeMatrices);
+        hallarMasOptimo(tiempoQuicksort, tiempoBurbuja, tiempoMultiplicacionDeMatrices);
     }
 
     private static int[] hacerArray() {
@@ -51,22 +51,18 @@ public class Main {
     private static Long ejecutarQuicksort(int[] array) {
 
         System.out.println("El array original es: " + Arrays.toString(array));
-        long tiempoInicial = System.nanoTime();
         System.out.println("El array ordenado con QUICKSORT es: " + Arrays.toString(ordenamiento.quicksort(array, 0, array.length - 1)));
-        long tiempoFinal = System.nanoTime() - tiempoInicial;
-        System.out.println("El tiempo tardado en QUICKSORT es: " + tiempoFinal + " nanosegundos");
+        System.out.println("El tiempo tardado en QUICKSORT es: " + ordenamiento.sumatoriaTiempo + " nanosegundos");
 
-        return tiempoFinal;
+        return ordenamiento.sumatoriaTiempo;
     }
 
     private static Long ejecutarBurbuja(int[] array) {
 
-        long tiempoInicial = System.nanoTime();
         System.out.println("El array ordenado con BURBUJA es" + Arrays.toString(ordenamiento.burbuja(array)));
-        long tiempoFinal = System.nanoTime() - tiempoInicial;
-        System.out.println("El tiempo tardado en BURBUJA es: " + tiempoFinal + " nanosegundos");
+        System.out.println("El tiempo tardado en BURBUJA es: " + ordenamiento.sumatoriaTiempo + " nanosegundos");
 
-        return tiempoFinal;
+        return ordenamiento.sumatoriaTiempo;
     }
 
     private static Long ejecutarMultiplicacionDeMatrices(int[][] matrizA, int[][] matrizB) {
@@ -97,9 +93,7 @@ public class Main {
             System.out.println("|");
         }
 
-        long tiempoInicial = System.nanoTime();
         int[][] matrizMultiplicada = matrices.multiplicarMatriz(matrizA, matrizB);
-        long tiempoFinal = System.nanoTime() - tiempoInicial;
 
         System.out.println("la matriz MULTIPLICADA es: ");
 
@@ -114,9 +108,9 @@ public class Main {
             System.out.println("|");
         }
 
-        System.out.println("El tiempo tardado en MULTIPLICAR las matrices es: " + tiempoFinal + " nanosegundos");
+        System.out.println("El tiempo total de ejecución de MULTIPLICACIÓN DE MATRICES es " + matrices.sumatoriaTiempo + " nanosegundos");
 
-        return tiempoFinal;
+        return matrices.sumatoriaTiempo;
     }
 
     private static void hallarMasOptimo(Long tiempoQuicksort, Long tiempoBurnuja, Long tiempoMultiplicacionDeMatrices) {
